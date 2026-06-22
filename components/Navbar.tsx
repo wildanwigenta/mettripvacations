@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Palmtree } from "lucide-react";
-import { navLinks } from "@/lib/data";
+import { Menu, X, Globe } from "lucide-react";
+import { navLinks, COMPANY_INFO, getWhatsAppLink } from "@/lib/data";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +14,8 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const waLink = getWhatsAppLink();
 
   return (
     <motion.nav
@@ -30,9 +32,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-2 group">
-            <Palmtree className="w-8 h-8 text-sky-500 group-hover:text-sky-600 transition-colors" />
+            <Globe className="w-8 h-8 text-sky-500 group-hover:text-sky-600 transition-colors" />
             <span className="text-xl font-bold font-heading bg-gradient-to-r from-sky-600 to-sky-400 bg-clip-text text-transparent">
-              MetTrip
+              {COMPANY_INFO.name}
             </span>
           </a>
 
@@ -48,7 +50,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://wa.me/6281234567890"
+              href={waLink}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-2.5 bg-gradient-to-r from-sky-500 to-sky-600 text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-sky-200 transition-all hover:-translate-y-0.5"
@@ -89,7 +91,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="https://wa.me/6281234567890"
+                href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center px-4 py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white text-sm font-semibold rounded-full mt-2"
