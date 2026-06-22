@@ -3,14 +3,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
 import { useState } from "react";
-import { whatsappConfig } from "@/lib/data";
+import { getWhatsAppLink } from "@/lib/data";
 
 export default function FloatingWhatsApp() {
   const [isTooltipVisible, setIsTooltipVisible] = useState(true);
 
-  const waLink = `https://wa.me/${whatsappConfig.phoneNumber}?text=${encodeURIComponent(
-    whatsappConfig.defaultMessage
-  )}`;
+  const waLink = getWhatsAppLink();
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
