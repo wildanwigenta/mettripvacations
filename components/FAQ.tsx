@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { faqItems } from "@/lib/data";
+import { FAQ_ITEMS } from "@/lib/data";
 
 export default function FAQ() {
   const [openId, setOpenId] = useState<string | null>(null);
@@ -26,31 +26,34 @@ export default function FAQ() {
           <span className="text-sm font-semibold text-sky-500 uppercase tracking-wider">
             FAQ
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-gray-900 mt-3 mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-sky-800 mt-3 mb-4">
             Pertanyaan Umum
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            Temukan jawaban untuk pertanyaan yang sering diajukan tentang
-            layanan kami.
+            Temukan jawaban untuk pertanyaan yang sering diajukan seputar layanan NusaWander.
           </p>
         </motion.div>
 
         {/* FAQ Items */}
         <div className="space-y-4">
-          {faqItems.map((item, index) => (
+          {FAQ_ITEMS.map((item, index) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="border border-sky-100 rounded-2xl overflow-hidden bg-sky-50/30 hover:bg-sky-50/60 transition-colors"
+              className={`border rounded-2xl overflow-hidden transition-colors ${
+                openId === item.id
+                  ? "border-sky-200 bg-sky-50"
+                  : "border-gray-200 bg-white hover:border-sky-200"
+              }`}
             >
               <button
                 onClick={() => toggle(item.id)}
                 className="w-full flex items-center justify-between px-6 py-5 text-left"
               >
-                <span className="font-semibold text-gray-900 pr-4">
+                <span className={`font-semibold pr-4 transition-colors ${openId === item.id ? "text-sky-700" : "text-gray-900"}`}>
                   {item.question}
                 </span>
                 <motion.div
@@ -58,7 +61,7 @@ export default function FAQ() {
                   transition={{ duration: 0.3 }}
                   className="flex-shrink-0"
                 >
-                  <ChevronDown className="w-5 h-5 text-sky-500" />
+                  <ChevronDown className={`w-5 h-5 ${openId === item.id ? "text-sky-600" : "text-gray-400"}`} />
                 </motion.div>
               </button>
               <AnimatePresence>
@@ -69,7 +72,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-5 text-gray-500 leading-relaxed">
+                    <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-sky-100 pt-4 mt-2">
                       {item.answer}
                     </div>
                   </motion.div>
