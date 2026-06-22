@@ -18,7 +18,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function HowToOrder() {
   return (
-    <section id="how-to-order" className="py-20 lg:py-28 bg-white">
+    <section id="cara-pesan" className="py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -31,17 +31,20 @@ export default function HowToOrder() {
           <span className="text-sm font-semibold text-sky-500 uppercase tracking-wider">
             Mudah & Cepat
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-gray-900 mt-3 mb-4">
-            Cara Pemesanan
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-sky-800 mt-3 mb-4">
+            Cara Pesan
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">
             Hanya 4 langkah mudah untuk memulai petualangan tak terlupakan
-            bersama MetTrip Vacations.
+            bersama NusaWander Travel.
           </p>
         </motion.div>
 
-        {/* Steps */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Horizontal Steps */}
+        <div className="relative flex flex-col md:flex-row items-start justify-between gap-8 md:gap-4 lg:gap-8">
+          {/* Connector Line for Desktop */}
+          <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-sky-100 z-0" />
+
           {howToOrderSteps.map((step, index) => {
             const Icon = iconMap[step.icon] || MapPin;
             return (
@@ -51,25 +54,22 @@ export default function HowToOrder() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="relative text-center group"
+                className="relative z-10 flex flex-col items-center text-center flex-1 w-full"
               >
-                {/* Connector line */}
-                {index < howToOrderSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-12 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-sky-200 to-sky-100" />
-                )}
-
                 {/* Icon */}
-                <div className="relative inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-sky-50 to-sky-100 rounded-2xl mb-6 group-hover:from-sky-100 group-hover:to-sky-200 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-sky-100 group-hover:-translate-y-1">
+                <div className="w-24 h-24 bg-white border-4 border-sky-50 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-sky-100 relative group transition-transform hover:-translate-y-2">
+                  <div className="absolute inset-0 bg-sky-500 rounded-full opacity-0 group-hover:opacity-10 transition-opacity" />
                   <Icon className="w-10 h-10 text-sky-500" />
-                  <span className="absolute -top-2 -right-2 w-7 h-7 bg-gradient-to-r from-sky-500 to-sky-600 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-md">
+                  {/* Step Number Badge */}
+                  <div className="absolute -top-1 -right-1 w-8 h-8 bg-sky-600 text-white font-bold rounded-full flex items-center justify-center shadow-md">
                     {step.step}
-                  </span>
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-bold font-heading text-gray-900 mb-2">
+                <h3 className="text-xl font-bold font-heading text-sky-800 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="text-gray-500 text-sm leading-relaxed max-w-[250px] mx-auto">
                   {step.description}
                 </p>
               </motion.div>
