@@ -1,25 +1,26 @@
 // ============================================================
-// lib/data.ts — Central data store for MetTrip Vacations
+// lib/data.ts — Central data store for NusaWander Travel
 // ============================================================
 
 export interface Destination {
   id: string;
-  title: string;
-  location: string;
-  price: string;
-  duration: string;
-  rating: number;
+  name: string;
+  tagline: string;
   image: string;
-  description: string;
+  priceFrom: string;
+  duration: string;
+  includes: string[];
+  badge?: string;
 }
 
 export interface Testimonial {
   id: string;
   name: string;
-  avatar: string;
+  destination: string;
   rating: number;
   comment: string;
-  destination: string;
+  avatar: string;
+  date: string;
 }
 
 export interface FAQItem {
@@ -36,82 +37,147 @@ export interface HowToOrderStep {
   icon: string;
 }
 
+export interface CompanyInfo {
+  name: string;
+  tagline: string;
+  whatsappNumber: string;
+  whatsappMessage: string;
+}
+
 // --- Navigation Links ---
 export const navLinks = [
   { label: "Beranda", href: "#hero" },
-  { label: "Destinasi", href: "#destinations" },
-  { label: "Cara Pesan", href: "#how-to-order" },
+  { label: "Destinasi", href: "#destinasi" },
+  { label: "Cara Pesan", href: "#cara-pesan" },
   { label: "Testimoni", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
 ];
 
+// --- Company Info ---
+export const COMPANY_INFO: CompanyInfo = {
+  name: "NusaWander Travel",
+  tagline: "Jelajahi Dunia, Ceritakan Keindahannya",
+  whatsappNumber: "6281234567890",
+  whatsappMessage: "Halo, saya ingin konsultasi paket wisata",
+};
+
 // --- Destinations ---
-export const destinations: Destination[] = [
+export const DESTINATIONS: Destination[] = [
   {
-    id: "bali",
-    title: "Bali Paradise",
-    location: "Bali, Indonesia",
-    price: "Rp 3.500.000",
-    duration: "4 Hari 3 Malam",
-    rating: 4.9,
-    image: "/images/bali.jpg",
-    description:
-      "Nikmati keindahan Pulau Dewata dengan pantai eksotis, pura megah, dan budaya yang memukau.",
+    id: "jepang",
+    name: "Jepang",
+    tagline: "Negeri Sakura yang Memukau",
+    image:
+      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80",
+    priceFrom: "Rp 18.500.000",
+    duration: "7 Hari 6 Malam",
+    includes: [
+      "Hotel Bintang 4",
+      "Tour Guide Berbahasa Indonesia",
+      "Transportasi Lokal",
+      "Makan 3x Sehari",
+      "Tiket Wisata",
+    ],
+    badge: "Terlaris",
   },
   {
-    id: "raja-ampat",
-    title: "Raja Ampat Explorer",
-    location: "Papua Barat, Indonesia",
-    price: "Rp 8.500.000",
+    id: "hongkong",
+    name: "Hongkong",
+    tagline: "Kota Seribu Gemerlap",
+    image:
+      "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=800&q=80",
+    priceFrom: "Rp 12.800.000",
     duration: "5 Hari 4 Malam",
-    rating: 5.0,
-    image: "/images/raja-ampat.jpg",
-    description:
-      "Jelajahi surga bawah laut dengan terumbu karang terbaik di dunia dan pemandangan yang menakjubkan.",
+    includes: [
+      "Hotel Bintang 3",
+      "City Tour Lengkap",
+      "Disneyland Pass",
+      "Makan 3x Sehari",
+      "Airport Transfer",
+    ],
   },
   {
-    id: "labuan-bajo",
-    title: "Labuan Bajo Adventure",
-    location: "NTT, Indonesia",
-    price: "Rp 5.200.000",
+    id: "macau",
+    name: "Macau",
+    tagline: "Perpaduan Budaya Timur & Barat",
+    image:
+      "https://images.unsplash.com/photo-1555217851-6141535bd771?w=800&q=80",
+    priceFrom: "Rp 11.200.000",
     duration: "4 Hari 3 Malam",
-    rating: 4.8,
-    image: "/images/labuan-bajo.jpg",
-    description:
-      "Bertemu Komodo, snorkeling di Pulau Padar, dan saksikan sunset terbaik di Indonesia.",
+    includes: [
+      "Hotel Bintang 4",
+      "Tur Heritage Macau",
+      "Gondola Venetian",
+      "Makan 2x Sehari",
+      "Guide Lokal",
+    ],
+    badge: "Promo",
   },
   {
-    id: "bromo",
-    title: "Bromo Sunrise",
-    location: "Jawa Timur, Indonesia",
-    price: "Rp 2.800.000",
-    duration: "3 Hari 2 Malam",
-    rating: 4.7,
-    image: "/images/bromo.jpg",
-    description:
-      "Saksikan matahari terbit yang spektakuler di atas lautan pasir Gunung Bromo.",
+    id: "kazakhstan",
+    name: "Kazakhstan",
+    tagline: "Pesona Asia Tengah yang Eksotis",
+    image:
+      "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&q=80",
+    priceFrom: "Rp 15.900.000",
+    duration: "6 Hari 5 Malam",
+    includes: [
+      "Hotel Bintang 4",
+      "Almaty City Tour",
+      "Charyn Canyon Trip",
+      "Makan 3x Sehari",
+      "Visa Assistance",
+    ],
   },
   {
-    id: "lombok",
-    title: "Lombok Getaway",
-    location: "Lombok, Indonesia",
-    price: "Rp 4.100.000",
-    duration: "4 Hari 3 Malam",
-    rating: 4.8,
-    image: "/images/lombok.jpg",
-    description:
-      "Pantai berpasir putih, Gili Trawangan, dan pesona alam yang belum banyak terjamah.",
+    id: "korea-selatan",
+    name: "Korea Selatan",
+    tagline: "Negeri K-Pop & Tradisi",
+    image:
+      "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&q=80",
+    priceFrom: "Rp 14.500.000",
+    duration: "6 Hari 5 Malam",
+    includes: [
+      "Hotel Bintang 4",
+      "Nami Island Tour",
+      "Hanbok Experience",
+      "Makan 3x Sehari",
+      "T-Money Card",
+    ],
+    badge: "Terlaris",
   },
   {
-    id: "yogyakarta",
-    title: "Jogja Heritage",
-    location: "Yogyakarta, Indonesia",
-    price: "Rp 2.500.000",
-    duration: "3 Hari 2 Malam",
-    rating: 4.6,
-    image: "/images/yogyakarta.jpg",
-    description:
-      "Eksplorasi Candi Borobudur, Prambanan, dan kekayaan budaya Jawa yang tiada tara.",
+    id: "dubai",
+    name: "Dubai",
+    tagline: "Kemewahan di Tengah Gurun",
+    image:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+    priceFrom: "Rp 19.900.000",
+    duration: "6 Hari 5 Malam",
+    includes: [
+      "Hotel Bintang 5",
+      "Desert Safari",
+      "Burj Khalifa Ticket",
+      "Makan 3x Sehari",
+      "Dhow Cruise Dinner",
+    ],
+  },
+  {
+    id: "turki",
+    name: "Turki",
+    tagline: "Jembatan Dua Benua",
+    image:
+      "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&q=80",
+    priceFrom: "Rp 21.500.000",
+    duration: "8 Hari 7 Malam",
+    includes: [
+      "Hotel Bintang 4",
+      "Cappadocia Hot Air Balloon",
+      "Bosphorus Cruise",
+      "Makan 3x Sehari",
+      "Domestic Flight",
+    ],
+    badge: "Promo",
   },
 ];
 
@@ -120,7 +186,7 @@ export const howToOrderSteps: HowToOrderStep[] = [
   {
     id: "step-1",
     step: 1,
-    title: "Pilih Destinasi",
+    title: "Pilih Paket",
     description:
       "Telusuri berbagai paket wisata kami dan pilih destinasi impian Anda.",
     icon: "MapPin",
@@ -128,7 +194,7 @@ export const howToOrderSteps: HowToOrderStep[] = [
   {
     id: "step-2",
     step: 2,
-    title: "Hubungi Kami",
+    title: "Chat WA",
     description:
       "Konsultasikan pilihan Anda melalui WhatsApp untuk detail dan ketersediaan.",
     icon: "MessageCircle",
@@ -136,7 +202,7 @@ export const howToOrderSteps: HowToOrderStep[] = [
   {
     id: "step-3",
     step: 3,
-    title: "Konfirmasi & Bayar",
+    title: "Bayar DP",
     description:
       "Lakukan pembayaran DP untuk mengamankan slot perjalanan Anda.",
     icon: "CreditCard",
@@ -146,99 +212,91 @@ export const howToOrderSteps: HowToOrderStep[] = [
     step: 4,
     title: "Berangkat!",
     description:
-      "Siapkan koper Anda dan nikmati liburan tak terlupakan bersama MetTrip.",
+      "Siapkan koper Anda dan nikmati liburan tak terlupakan bersama NusaWander.",
     icon: "Plane",
   },
 ];
 
 // --- Testimonials ---
-export const testimonials: Testimonial[] = [
+export const TESTIMONIALS: Testimonial[] = [
   {
     id: "testi-1",
-    name: "Sarah Putri",
-    avatar: "/images/avatar-1.jpg",
+    name: "Rina Kartika",
+    destination: "Jepang",
     rating: 5,
     comment:
-      "Perjalanan ke Raja Ampat bersama MetTrip benar-benar luar biasa! Semua terorganisir dengan baik dan guide-nya sangat ramah.",
-    destination: "Raja Ampat",
+      "Trip ke Jepang bareng NusaWander bener-bener unforgettable! Guide-nya ramah, itinerary-nya detail, dan hotel-nya strategis banget. Pasti repeat order!",
+    avatar: "https://i.pravatar.cc/100?img=1",
+    date: "15 Mei 2026",
   },
   {
     id: "testi-2",
-    name: "Ahmad Rizki",
-    avatar: "/images/avatar-2.jpg",
+    name: "Fajar Nugroho",
+    destination: "Korea Selatan",
     rating: 5,
     comment:
-      "Sudah 3 kali pakai MetTrip dan selalu puas. Harga bersaing dengan kualitas pelayanan bintang lima!",
-    destination: "Bali",
+      "Korea trip-nya seru banget! Nami Island-nya cantik, makanannya enak semua, dan guide-nya asik. Worth every penny. Terima kasih NusaWander!",
+    avatar: "https://i.pravatar.cc/100?img=3",
+    date: "2 Juni 2026",
   },
   {
     id: "testi-3",
-    name: "Dewi Anggraini",
-    avatar: "/images/avatar-3.jpg",
-    rating: 5,
+    name: "Siti Aisyah",
+    destination: "Turki",
+    rating: 4,
     comment:
-      "Labuan Bajo trip-nya seru banget! Sunset di Padar Island bikin speechless. Terima kasih MetTrip!",
-    destination: "Labuan Bajo",
+      "Cappadocia & Istanbul luar biasa indah. Hot air balloon-nya dreamy banget. Pelayanan NusaWander sangat profesional dari awal sampai akhir.",
+    avatar: "https://i.pravatar.cc/100?img=5",
+    date: "20 April 2026",
   },
   {
     id: "testi-4",
-    name: "Budi Santoso",
-    avatar: "/images/avatar-4.jpg",
-    rating: 4,
+    name: "Denny Pratama",
+    destination: "Dubai",
+    rating: 5,
     comment:
-      "Pengalaman sunrise di Bromo sangat memukau. Akomodasi nyaman dan transportasi lancar. Recommended!",
-    destination: "Bromo",
+      "Desert safari-nya epic! Hotel bintang 5 dan Burj Khalifa experience bikin liburan terasa super mewah. Highly recommended!",
+    avatar: "https://i.pravatar.cc/100?img=8",
+    date: "10 Maret 2026",
   },
 ];
 
 // --- FAQ ---
-export const faqItems: FAQItem[] = [
+export const FAQ_ITEMS: FAQItem[] = [
   {
     id: "faq-1",
-    question: "Bagaimana cara memesan paket wisata?",
+    question: "Apakah harga paket sudah termasuk visa?",
     answer:
-      "Anda bisa memesan langsung melalui WhatsApp kami. Pilih destinasi yang diinginkan, konsultasikan jadwal Anda, lalu lakukan pembayaran DP untuk konfirmasi booking.",
+      "Untuk beberapa destinasi, harga sudah termasuk visa assistance. Namun untuk negara tertentu seperti Jepang dan Korea Selatan, biaya visa diurus terpisah. Tim kami akan membantu proses pengajuan visa Anda dari awal hingga selesai.",
   },
   {
     id: "faq-2",
-    question: "Apakah harga sudah termasuk tiket pesawat?",
+    question: "Bisa custom itinerary sesuai keinginan?",
     answer:
-      "Harga paket kami belum termasuk tiket pesawat. Namun, kami bisa membantu Anda untuk pemesanan tiket pesawat dengan harga terbaik.",
+      "Tentu bisa! Kami menyediakan layanan private trip dengan itinerary yang bisa disesuaikan sepenuhnya. Mulai dari destinasi, durasi, pilihan hotel, hingga aktivitas spesifik yang Anda inginkan.",
   },
   {
     id: "faq-3",
-    question: "Berapa minimal peserta untuk trip?",
+    question: "Apakah tersedia opsi DP atau cicilan?",
     answer:
-      "Untuk open trip, minimal peserta adalah 2 orang. Untuk private trip, bisa disesuaikan dengan kebutuhan Anda.",
+      "Ya, kami menyediakan opsi pembayaran DP minimal 30% dari total harga paket. Sisa pembayaran bisa dilunasi paling lambat H-14 sebelum keberangkatan. Kami juga bekerja sama dengan beberapa platform cicilan.",
   },
   {
     id: "faq-4",
-    question: "Apakah bisa custom itinerary?",
+    question: "Berapa minimal peserta untuk open trip?",
     answer:
-      "Tentu! Kami menyediakan layanan private trip dengan itinerary yang bisa disesuaikan sepenuhnya dengan keinginan Anda.",
+      "Untuk open trip, minimal keberangkatan adalah 10 peserta. Jika kuota belum terpenuhi, kami akan menginformasikan paling lambat H-21. Untuk private trip, minimal 2 orang sudah bisa berangkat.",
   },
   {
     id: "faq-5",
-    question: "Bagaimana kebijakan pembatalan?",
+    question: "Bagaimana jika terjadi pembatalan perjalanan?",
     answer:
-      "Pembatalan H-14 mendapatkan refund 100%, H-7 refund 50%, dan kurang dari H-7 tidak dapat di-refund. Namun, booking bisa dipindahkan ke jadwal lain.",
+      "Pembatalan H-30 mendapatkan refund 90%, H-14 refund 50%, dan kurang dari H-7 tidak dapat di-refund. Namun, booking bisa dipindahkan ke jadwal keberangkatan lain dengan syarat dan ketentuan berlaku.",
   },
 ];
 
-// --- WhatsApp Config ---
-export const whatsappConfig = {
-  phoneNumber: "6281234567890",
-  defaultMessage: "Halo MetTrip! Saya tertarik dengan paket wisata Anda. Bisa info lebih lanjut?",
-};
-
-// --- Company Info ---
-export const companyInfo = {
-  name: "MetTrip Vacations",
-  tagline: "Jelajahi Indonesia, Ciptakan Kenangan",
-  description:
-    "MetTrip Vacations adalah partner perjalanan terpercaya yang menghadirkan pengalaman wisata terbaik ke destinasi-destinasi terindah di Indonesia.",
-  email: "hello@mettripvacations.com",
-  phone: "+62 812-3456-7890",
-  instagram: "@mettripvacations",
-  address: "Jakarta, Indonesia",
-};
+// --- Helper: Build WhatsApp Link ---
+export function getWhatsAppLink(customMessage?: string): string {
+  const message = customMessage || COMPANY_INFO.whatsappMessage;
+  return `https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
