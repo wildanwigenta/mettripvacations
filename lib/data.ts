@@ -55,7 +55,7 @@ export const navLinks = [
 
 // --- Company Info ---
 export const COMPANY_INFO: CompanyInfo = {
-  name: "NusaWander Travel",
+  name: "Mettrip Vacations",
   tagline: "Jelajahi Dunia, Ceritakan Keindahannya",
   whatsappNumber: "6281234567890",
   whatsappMessage: "Halo, saya ingin konsultasi paket wisata",
