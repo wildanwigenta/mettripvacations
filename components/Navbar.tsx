@@ -32,7 +32,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-2 group">
-            <Globe className="w-8 h-8 text-sky-500 group-hover:text-sky-600 transition-colors" />
+            <img
+              src="/images/mettrip.png"
+              alt={COMPANY_INFO.name}
+              className="w-8 h-8 object-contain"
+            />
             <span className="text-xl font-bold font-heading bg-gradient-to-r from-sky-600 to-sky-400 bg-clip-text text-transparent">
               {COMPANY_INFO.name}
             </span>
