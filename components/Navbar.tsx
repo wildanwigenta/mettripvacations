@@ -48,7 +48,9 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-gray-600 hover:text-sky-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-sky-500 after:transition-all hover:after:w-full"
+                className={`text-sm font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-sky-500 after:transition-all hover:after:w-full hover:text-sky-600 ${
+                  scrolled ? "text-gray-600" : "text-white"
+                }`}
               >
                 {link.label}
               </a>
