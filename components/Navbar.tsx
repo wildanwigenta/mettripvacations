@@ -33,7 +33,7 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-2 group">
             <img
-              src="/images/mettrip.png"
+              src="/images/icon-mettrip.png"
               alt={COMPANY_INFO.name}
               className="w-8 h-8 object-contain"
             />
